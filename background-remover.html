@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free online background remover tool with image compression and optimization options. Remove backgrounds and compress images easily!" />
+  <meta name="keywords" content="background remover, image optimizer, image compression, free tool" />
+  <meta name="author" content="YourSiteName" />
+  <title>Background Remover & Image Optimizer</title>  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #222;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 1rem;
+    }
+
+    .tool-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .tool-section input[type='file'],
+    .tool-section select,
+    .tool-section button {
+      display: block;
+      width: 100%;
+      margin: 1rem 0;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .ads {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    #output {
+      max-width: 100%;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .tool-section {
+        padding: 1rem;
+      }
+    }
+  </style></head>
+<body>
+  <header>
+    <h1>Background Remover & Image Optimizer</h1>
+  </header>  <div class="container">
+    <div class="ads">
+      <!-- Replace with your Google AdSense Ad Unit ID -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div><div class="tool-section">
+  <label for="imageUpload">Upload Image:</label>
+  <input type="file" id="imageUpload" accept="image/*" />
+
+  <label for="compression">Compression Level:</label>
+  <select id="compression">
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select>
+
+  <button onclick="processImage()">Remove Background & Optimize</button>
+
+  <div id="output"></div>
+</div>
+
+<div class="ads">
+  <!-- Another Ad Placement -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
+       data-ad-slot="XXXXXXXXXX"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+  </div>  <script>
+    async function processImage() {
+      const fileInput = document.getElementById('imageUpload');
+      const compression = document.getElementById('compression').value;
+      const output = document.getElementById('output');
+
+      if (!fileInput.files.length) {
+        alert('Please upload an image.');
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = async function (e) {
+        const imageDataUrl = e.target.result;
+        // Here you would typically send the image to a backend/background removal API
+        // For demo, we just display the image
+        output.innerHTML = '<img src="' + imageDataUrl + '" alt="Processed Image" style="max-width:100%" />';
+
+        // TODO: Integrate real API for background removal and image optimization
+      };
+
+      reader.readAsDataURL(file);
+    }
+  </script>  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script></body>
+</html>
