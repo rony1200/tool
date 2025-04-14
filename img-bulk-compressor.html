@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Compress your images in bulk with our fast and SEO-optimized online image compressor tool. Choose compression level and download optimized images quickly." />
+  <title>Bulk Image Compressor Tool</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .ad-space {
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .upload-section {
+      margin-bottom: 1.5rem;
+    }
+    input[type="file"] {
+      margin-bottom: 1rem;
+    }
+    label {
+      font-weight: bold;
+    }
+    select, button {
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+    .preview img {
+      max-width: 100%;
+      height: auto;
+      margin: 1rem 0;
+    }
+    .image-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .image-list img {
+      width: 100px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bulk Image Compressor</h1>
+    <p>Optimize multiple images at once with adjustable compression level</p>
+  </header>  <main>
+    <!-- Google AdSense Ad Unit -->
+    <div class="ad-space">
+      <!-- Replace ca-pub-XXXXXXXXXXXXXXXX with your AdSense ID -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div><section class="upload-section">
+  <label for="image-input">Upload Images:</label>
+  <input type="file" id="image-input" multiple accept="image/*">
+
+  <label for="compression-level">Compression Level:</label>
+  <select id="compression-level">
+    <option value="0.1">High Compression (Low Quality)</option>
+    <option value="0.5" selected>Medium Compression</option>
+    <option value="0.8">Low Compression (High Quality)</option>
+  </select>
+
+  <button id="compress-btn">Compress Images</button>
+</section>
+
+<div class="image-list" id="output"></div>
+
+<div class="ad-space">
+  <!-- Another AdSense Unit -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+       data-ad-slot="0987654321"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+  </main>  <script>
+    document.getElementById('compress-btn').addEventListener('click', async () => {
+      const input = document.getElementById('image-input');
+      const output = document.getElementById('output');
+      const compressionLevel = parseFloat(document.getElementById('compression-level').value);
+
+      output.innerHTML = '';
+
+      if (!input.files.length) return alert("Please upload images");
+
+      for (const file of input.files) {
+        const img = new Image();
+        const reader = new FileReader();
+
+        reader.onload = e => {
+          img.src = e.target.result;
+        };
+
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+
+          canvas.toBlob(blob => {
+            const compressedUrl = URL.createObjectURL(blob);
+            const downloadLink = document.createElement('a');
+            const imagePreview = document.createElement('img');
+
+            imagePreview.src = compressedUrl;
+            downloadLink.href = compressedUrl;
+            downloadLink.download = file.name;
+            downloadLink.appendChild(imagePreview);
+
+            output.appendChild(downloadLink);
+          }, 'image/jpeg', compressionLevel);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>  <!-- Google AdSense Script -->  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script></body>
+</html>
