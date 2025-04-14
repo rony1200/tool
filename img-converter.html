@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert and compress your images online. Select compression level and get optimized images instantly.">
+    <meta name="keywords" content="image converter, image compressor, online image tool, optimize images">
+    <meta name="author" content="YourSiteName">
+    <title>Online Image Converter & Compressor</title><!-- SEO Open Graph Tags -->
+<meta property="og:title" content="Online Image Converter & Compressor">
+<meta property="og:description" content="Convert and compress your images online with customizable compression levels.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.yoursite.com/">
+<meta property="og:image" content="https://www.yoursite.com/og-image.jpg">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    header, footer {
+        background-color: #222;
+        color: white;
+        text-align: center;
+        padding: 1em;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .ad-space {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .input-group {
+        margin: 15px 0;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input[type="file"],
+    input[type="range"] {
+        width: 100%;
+    }
+
+    .output img {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 10px;
+        }
+    }
+</style>
+
+</head><body>
+    <header>
+        <h1>Image Converter & Compressor</h1>
+        <p>Upload, compress and download images easily</p>
+    </header><div class="container">
+    <!-- Google AdSense Ad Unit (Insert your Ad Unit ID below) -->
+    <div class="ad-space">
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+            data-ad-slot="1234567890"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+    </div>
+
+    <div class="input-group">
+        <label for="imageInput">Choose Image:</label>
+        <input type="file" id="imageInput" accept="image/*">
+    </div>
+
+    <div class="input-group">
+        <label for="compression">Compression Level: <span id="compressionValue">75</span>%</label>
+        <input type="range" id="compression" min="10" max="100" value="75">
+    </div>
+
+    <button onclick="compressImage()">Compress & Download</button>
+
+    <div class="output" id="output"></div>
+</div>
+
+<footer>
+    <p>&copy; 2025 YourSiteName. All rights reserved.</p>
+</footer>
+
+<!-- Scripts -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+
+    const imageInput = document.getElementById('imageInput');
+    const compression = document.getElementById('compression');
+    const compressionValue = document.getElementById('compressionValue');
+
+    compression.addEventListener('input', () => {
+        compressionValue.textContent = compression.value;
+    });
+
+    function compressImage() {
+        const file = imageInput.files[0];
+        if (!file) return alert('Please select an image file.');
+
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const img = new Image();
+            img.onload = function () {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+
+                const quality = compression.value / 100;
+                canvas.toBlob(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const output = document.getElementById('output');
+                    output.innerHTML = <a href="${url}" download="compressed-image.jpg">Download Compressed Image</a><br><img src="${url}" alt="Compressed Image">;
+                }, 'image/jpeg', quality);
+            };
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
+
+</body>
+</html>
