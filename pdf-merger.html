@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Merge and compress PDF files online for free. Choose compression level and combine PDFs easily with this SEO-optimized tool.">
+    <meta name="keywords" content="PDF merger, PDF combiner, compress PDF, online PDF tool, merge PDF files">
+    <meta name="author" content="YourName">
+    <title>PDF Merger Tool - Combine & Compress PDFs Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8f9fa, #dbe9f4);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #444;
+        }
+        .form-control, .form-select {
+            border-radius: 12px;
+            padding: 10px;
+        }
+        .btn-primary, .btn-success {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .ad-space {
+            background-color: #f8f9fa;
+            border: 2px dashed #ced4da;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        #output p {
+            margin-top: 20px;
+            font-weight: 500;
+        }
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            .container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Merge & Compress PDFs</h1>
+
+    <!-- AdSense Top -->
+    <div class="ad-space">
+        <!-- Google AdSense Code -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+            data-ad-slot="1234567890"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+    </div>
+
+    <form id="mergeForm">
+        <div class="mb-3">
+            <label for="pdfFiles" class="form-label">Upload PDF Files (Multiple):</label>
+            <input type="file" class="form-control" id="pdfFiles" accept="application/pdf" multiple required>
+        </div>
+        <div class="mb-3">
+            <label for="compressionLevel" class="form-label">Select Compression Level:</label>
+            <select class="form-select" id="compressionLevel">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Merge & Compress</button>
+    </form>
+
+    <div id="output" class="text-center"></div>
+
+    <!-- AdSense Bottom -->
+    <div class="ad-space">
+        <!-- Google AdSense Code -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+            data-ad-slot="1234567890"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script>
+    document.getElementById('mergeForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const files = document.getElementById('pdfFiles').files;
+        const compressionLevel = document.getElementById('compressionLevel').value;
+        const output = document.getElementById('output');
+
+        if (files.length < 2) {
+            alert('Please select at least two PDF files.');
+            return;
+        }
+
+        try {
+            const mergedPdf = await PDFLib.PDFDocument.create();
+
+            for (const file of files) {
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await PDFLib.PDFDocument.load(arrayBuffer);
+                const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+
+                copiedPages.forEach((page) => {
+                    let scale = 1;
+                    if (compressionLevel === 'low') scale = 0.8;
+                    else if (compressionLevel === 'medium') scale = 0.6;
+                    else if (compressionLevel === 'high') scale = 0.4;
+
+                    const { width, height } = page.getSize();
+                    page.scaleContent(scale, scale);
+                    mergedPdf.addPage(page);
+                });
+            }
+
+            const pdfBytes = await mergedPdf.save();
+            const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+
+            output.innerHTML = `
+                <p class="text-success">Your merged and compressed PDF is ready:</p>
+                <a href="${url}" download="merged_compressed.pdf" class="btn btn-success">Download Merged PDF</a>
+            `;
+        } catch (error) {
+            output.innerHTML = `<p class="text-danger">Error merging PDFs: ${error.message}</p>`;
+        }
+    });
+
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+</html>
