@@ -1,36 +1,177 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us - AllToolsWeb</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Learn more about our mission, values, and team behind this platform." />
+  <meta name="keywords" content="About Us, Company Info, Our Story, SEO, Responsive Design" />
+  <meta name="author" content="Toolkit Pro" />
+  <title>About Us | Toolkit Pro</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- CSS Styles -->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fdfdfd;
+      color: #333;
+    }
+
+    header {
+      background-color: #0d6efd;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .ad-space {
+      border: 2px dashed #ccc;
+      padding: 1rem;
+      text-align: center;
+      background-color: #fafafa;
+      margin: 2rem 0;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .about-content {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .toggle-menu {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        margin-top: 1rem;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      .toggle-menu {
+        display: block;
+      }
+    }
+  </style>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
+
 <body>
   <header>
-    <h1>About Us</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="image-tools.html">Image Tools</a>
-      <a href="pdf-tools.html">PDF Tools</a>
-      <a href="features.html">Features</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy Policy</a>
+    <h1>Toolkit Pro</h1>
+    <div class="toggle-menu" onclick="toggleMenu()">☰</div>
+    <nav id="navLinks">
+      <a href="/tool/home-page.html">Home</a>
+      <a href="/tool/about-us-page.html">About</a>
+      <a href="/tool/features-page.html">Features</a>
+      <a href="/tool/contact-us-page.html">Contact</a>
     </nav>
   </header>
-  
-  <main>
-    <section>
-      <p>We are passionate about building fast, free, and user-friendly tools to make your work with images and PDFs effortless. From simple conversions to advanced editing, our tools are designed with you in mind. Our mission is to help you save time, boost productivity, and provide a seamless experience for everyone.</p>
+
+  <main class="container">
+    <section class="about-content">
+      <div>
+        <h2>About Us</h2>
+        <p>Welcome to <strong>Toolkit Pro</strong>! We are committed to delivering high-quality content, solutions, and experiences tailored to our audience's needs. With a dedicated team and a passion for innovation, we aim to make a lasting impact.</p>
+
+        <p>Our mission is to provide value through engaging and relevant content while building a strong, trustworthy community.</p>
+
+        <p>Thank you for being a part of our journey. We’re always here to listen, improve, and evolve with your feedback.</p>
+      </div>
+
+      <aside>
+        <div class="ad-space">
+          <!-- Google AdSense Ad Unit -->
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+               data-ad-slot="1234567890"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </aside>
     </section>
+
+    <!-- Second Ad Space -->
+    <div class="ad-space">
+      <p>Advertisement</p>
+      <!-- Replace with your AdSense Code -->
+    </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 AllToolsWeb. All rights reserved.</p>
+    <p>&copy; <span id="year"></span>Toolkit Pro. All rights reserved.</p>
   </footer>
+
+  <!-- JavaScript for interactivity -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('show');
+    }
+
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
