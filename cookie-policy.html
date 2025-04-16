@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn about how we use cookies to enhance your experience on our website.">
+  <meta name="keywords" content="Cookie Policy, Privacy, GDPR, Cookies, AdSense">
+  <meta name="author" content="Toolkit Pro">
+  <title>Cookie Policy | Toolkit Pro</title>
+  
+  <!-- Google AdSense (Replace ca-pub-XXXX with your ID) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"
+     crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background-color: #fff;
+    }
+
+    header, footer {
+      background-color: #0a0a23;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      color: #0a0a23;
+    }
+
+    .adsense-placeholder {
+      margin: 20px 0;
+      background: #f9f9f9;
+      text-align: center;
+      padding: 10px;
+      border: 1px dashed #ccc;
+    }
+
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #0a0a23;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .cookie-banner button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .cookie-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cookie-banner button {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Toolkit Pro</h1>
+    <p>Transparency is our priority</p>
+  </header>
+
+  <div class="container">
+    <h2>Cookie Policy</h2>
+    <p>This Cookie Policy explains how YourSiteName ("we", "us", or "our") uses cookies and similar technologies to recognize you when you visit our website.</p>
+    
+    <h3>1. What are Cookies?</h3>
+    <p>Cookies are small data files stored on your computer or mobile device when you visit a website. They help improve functionality, analyze usage, and personalize content.</p>
+
+    <h3>2. Why We Use Cookies</h3>
+    <ul>
+      <li>To improve website performance</li>
+      <li>To remember your preferences</li>
+      <li>To provide personalized ads through Google AdSense</li>
+    </ul>
+
+    <div class="adsense-placeholder">
+      <!-- Google AdSense Ad Slot -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXX"  <!-- Replace with your Ad Unit ID -->
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <h3>3. Managing Cookies</h3>
+    <p>You can control and delete cookies through your browser settings. However, disabling cookies may affect your user experience.</p>
+
+    <h3>4. Third-Party Cookies</h3>
+    <p>We may use third-party services like Google AdSense which may set their own cookies for ad targeting and performance tracking.</p>
+
+    <h3>5. Updates</h3>
+    <p>We may update this Cookie Policy from time to time. The date of the last update will always be listed below.</p>
+
+    <p><strong>Last updated:</strong> April 16, 2025</p>
+  </div>
+
+  <footer>
+    &copy; 2025 Toolkit Pro. All rights reserved.
+  </footer>
+
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-banner" id="cookieBanner">
+    <span>We use cookies to improve your experience. By using our site, you agree to our use of cookies.</span>
+    <button onclick="acceptCookies()">Accept</button>
+  </div>
+
+  <script>
+    function acceptCookies() {
+      document.getElementById('cookieBanner').style.display = 'none';
+      localStorage.setItem('cookiesAccepted', 'true');
+    }
+
+    window.onload = function () {
+      if (localStorage.getItem('cookiesAccepted') === 'true') {
+        document.getElementById('cookieBanner').style.display = 'none';
+      }
+    };
+  </script>
+</body>
+</html>
